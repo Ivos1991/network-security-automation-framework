@@ -231,9 +231,7 @@ Pipeline behavior:
 - runs the same pytest suite used locally
 - uploads Allure results as build artifacts
 
-## Why This Demonstrates Cybersecurity-Focused QA Automation
-
-This repository shows:
+## This repository Demonstrates
 
 - backend-oriented automation design instead of UI-heavy coverage
 - documentation-first engineering discipline
