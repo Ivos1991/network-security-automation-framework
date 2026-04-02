@@ -1,6 +1,4 @@
 from __future__ import annotations
-
-
 def validate_hybrid_access_compliance(
     intended_policy: dict[str, str],
     offline_evaluation: dict[str, object],

@@ -1,6 +1,4 @@
 from __future__ import annotations
-
-
 def validate_device_hardening(running_config: str) -> dict[str, object]:
     """Validate the current hardening expectations against a running config string."""
     normalized_config = running_config.lower()

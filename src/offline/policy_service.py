@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from typing import Any
-
 from framework.config.config_manager import ConfigManager
 from offline.policy_service_api import PolicyServiceApi
 from offline.policy_service_request import build_segmentation_policy_request

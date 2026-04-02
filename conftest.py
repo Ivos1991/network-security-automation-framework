@@ -1,14 +1,11 @@
 from __future__ import annotations
-
 import os
 import subprocess
 import time
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.request import urlopen
-
 import pytest
-
 from framework.config.config_manager import ConfigManager
 from framework.models.compliance_status import HybridComplianceStatus
 from integration.compliance_service import (

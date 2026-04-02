@@ -1,9 +1,7 @@
 from __future__ import annotations
-
 from collections.abc import Sequence
 from copy import deepcopy
 from typing import Any
-
 from framework.config.config_manager import ConfigManager
 from framework.models.compliance_status import (
     HybridComplianceAggregation,

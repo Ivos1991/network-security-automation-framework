@@ -1,16 +1,12 @@
 from __future__ import annotations
-
 from typing import Any
-
 from framework.config.config_manager import ConfigManager
-
 try:
     from pybatfish.client.session import Session
     from pybatfish.datamodel.flow import HeaderConstraints
 except ImportError:  # pragma: no cover - handled explicitly at runtime
     Session = None
     HeaderConstraints = None
-
 
 class MockBatfishClient:
     """Fallback offline backend for scenarios not yet wired to a real Batfish query."""

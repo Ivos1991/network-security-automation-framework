@@ -1,6 +1,4 @@
 from __future__ import annotations
-
-
 def validate_management_plane_compliance(
     intended_posture: dict[str, bool],
     observed_posture: dict[str, bool],

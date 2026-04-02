@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from typing import Any
-
 from framework.config.config_manager import ConfigManager
 from live.device_service_api import DeviceServiceApi
 from live.device_service_request import build_device_running_config_request
