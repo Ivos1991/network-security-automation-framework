@@ -1,0 +1,6 @@
+allure-pytest
+assertpy
+pybatfish
+pydantic>=2,<3
+pytest
+pyyaml

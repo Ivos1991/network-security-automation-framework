@@ -1,0 +1,45 @@
+lab_name: zero_trust_lab
+devices:
+  - name: lab-edge-01
+    management_ip: 192.0.2.10
+    role: edge
+    intended_management_plane:
+      ssh_enabled: true
+      telnet_enabled: false
+      banner_login_present: true
+segments:
+  management_plane: device_management
+  admin_subnet: 10.10.10.0/24
+  user_subnet: 10.20.20.0/24
+  restricted_subnet: 10.30.30.0/24
+intended_access_rules:
+  - name: admin_management_access
+    source: admin_subnet
+    destination: management_plane
+    action: allow
+policies:
+  - source: user_subnet
+    destination: restricted_subnet
+    action: deny
+  - source: admin_subnet
+    destination: restricted_subnet
+    action: allow
+  - source: admin_subnet
+    destination: management_plane
+    action: allow
+offline_batfish:
+  segmentation_scenarios:
+    - source: user_subnet
+      destination: restricted_subnet
+      node: lab-edge-01
+      filter_name: USER_TO_RESTRICTED
+      start_location: "@enter(lab-edge-01[GigabitEthernet0/0])"
+      src_ip: 10.20.20.10
+      dst_ip: 10.30.30.10
+    - source: admin_subnet
+      destination: restricted_subnet
+      node: lab-edge-01
+      filter_name: ADMIN_TO_RESTRICTED
+      start_location: "@enter(lab-edge-01[GigabitEthernet0/2])"
+      src_ip: 10.10.10.10
+      dst_ip: 10.30.30.10

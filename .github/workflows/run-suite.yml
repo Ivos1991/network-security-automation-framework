@@ -1,0 +1,64 @@
+name: Run Suite
+
+on:
+  workflow_call:
+    inputs:
+      suite_name:
+        required: true
+        type: string
+      test_target:
+        required: false
+        type: string
+        default: tests
+      pytest_args:
+        required: false
+        type: string
+        default: -q -rs
+      artifact_name:
+        required: true
+        type: string
+      timeout_minutes:
+        required: false
+        type: number
+        default: 25
+
+permissions:
+  contents: read
+
+jobs:
+  run-tests:
+    name: ${{ inputs.suite_name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ inputs.timeout_minutes }}
+    env:
+      ALLURE_RESULTS_DIR: artifacts/allure-results
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Pre-pull Batfish image
+        run: docker pull batfish/allinone
+
+      - name: Run pytest suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pytest "${{ inputs.test_target }}" --alluredir="${ALLURE_RESULTS_DIR}" ${{ inputs.pytest_args }}
+
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifact_name }}
+          if-no-files-found: warn
+          path: artifacts/
