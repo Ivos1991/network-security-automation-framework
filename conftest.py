@@ -108,7 +108,11 @@ def batfish_service(config: ConfigManager) -> dict[str, str]:
             if exc.code < 500:
                 break
             last_error = str(exc)
+        except ConnectionResetError as exc:
+            last_error = str(exc)
         except URLError as exc:
+            last_error = str(exc)
+        except OSError as exc:
             last_error = str(exc)
         time.sleep(2)
     else:
