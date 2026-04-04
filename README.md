@@ -1,6 +1,6 @@
 # Network Security Automation Framework
 
-This repository demonstrates a cybersecurity-focused QA automation approach for validating a small zero-trust lab through two coordinated paths:
+This repository demonstrates a cybersecurity-focused automation approach for validating a small zero-trust lab through two coordinated paths:
 
 - a mocked live validation path for management-plane hardening
 - a real Batfish-backed offline validation path for segmentation intent
